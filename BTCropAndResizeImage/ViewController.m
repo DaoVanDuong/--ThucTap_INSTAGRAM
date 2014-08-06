@@ -9,6 +9,7 @@
 #import "ViewController.h"
 #import "resizeImage.h"
 #import "testViewController.h"
+#import "mutilpleScreen.h"
 
 @interface ViewController ()
 
@@ -17,27 +18,78 @@
 @implementation ViewController
 {
     UIImage *imageToCrop;
-    NSInteger chooseType;
 }
 @synthesize imageView,boundView;
 @synthesize lkBackImage;
 @synthesize lkTabBar;
+
+@synthesize viewBound;
+@synthesize btnBarCrop;
+@synthesize height;
+@synthesize viewBottom;
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    chooseType = 0;
-    //imageToCrop =[UIImage imageNamed:@"images1.jpeg"];
-    //self.imageView.image = imageToCrop;
+    height = 1.0;
+    if (IS_IOS7) {
+        if (IS_IPHONE_5) {
+            NSLog(@"is retina4 ios7");
+            CGRect theFrame;
+            //get frame from toolbar to set new location
+            theFrame= [viewBottom frame];
+            theFrame.origin.y = 519;
+            viewBottom.frame = theFrame;
+            height = 519.0-44.0;
+            //get frame from imageview to set new height
+            theFrame=[imageView frame];
+            theFrame.size.height = height;
+            imageView.frame = theFrame;
+        } else{
+            NSLog(@"is retina3.5 ios7");//retina3.5 ios7 //retina4 ios7  -------------3.5inch iOS7
+            CGRect theFrame;
+            //get frame from toolbar to set new location
+            theFrame= [viewBottom frame];
+            theFrame.origin.y = 430;
+            viewBottom.frame = theFrame;
+            height = 430.0-44.0;
+            //get frame from imageview to set new height
+            theFrame=[imageView frame];
+            theFrame.size.height = height;
+            imageView.frame = theFrame;
+            
+            
+        }
+    }else {
+        NSLog(@"ios6"); //480x320
+        CGRect theFrame;
+        //get frame from toolbar to set new location
+        theFrame= [viewBottom frame];
+        theFrame.origin.y = 413;
+        viewBottom.frame = theFrame;
+        height = 413.0-44.0;
+        //get frame from imageview to set new height
+        theFrame=[imageView frame];
+        theFrame.size.height = height;
+        imageView.frame = theFrame;
+    }
+    
 	// Do any additional setup after loading the view, typically from a nib.
     imageView.image = lkBackImage;
+    
+    //author dvduongth
+    if (imageView.image ==nil) {
+        viewBound.hidden = true;
+        btnBarCrop.enabled = false;
+    }
+    
+    
    // [self setTabBarItem:lkTabBar.tabBarItem];
     
     ImagePicker = [[UIImagePickerController alloc]init];
     ImagePicker.delegate = self;
     @try{
-       // NSLog(@"You choose Camera");
+
         ImagePicker.sourceType = UIImagePickerControllerSourceTypeCamera;
-        chooseType = 1;
         [self presentViewController:ImagePicker animated:YES completion:NULL];
     }
     @catch(NSException *ex)
@@ -85,11 +137,20 @@
             }
             
             //if bottom edge coordinate is greater than or equal to 480
+<<<<<<< HEAD
             
-            if (bottomEdgePosition >=434) {
+            if (bottomEdgePosition >=(44+height)) {
                 
                 //draw drag view in max bottom position
-                boundView.frame = CGRectMake(0, 114, 320, 320);
+                boundView.frame = CGRectMake(0, (44+height)-320, 320, 320);
+=======
+
+            if (bottomEdgePosition >=430) {
+                
+                //draw drag view in max bottom position
+                boundView.frame = CGRectMake(0, 110, 320, 320);
+
+>>>>>>> FETCH_HEAD
             }
             
         }
@@ -110,6 +171,8 @@
     UIImage *imageChoose = [info objectForKey:UIImagePickerControllerOriginalImage];
     [imageView setImage:imageChoose];
     [self dismissViewControllerAnimated:YES completion:NULL];
+    btnBarCrop.enabled =true;
+    viewBound.hidden = false;
     
 }
 //click cancel
@@ -140,9 +203,9 @@
     if (buttonIndex == 0){
         //save photo
         @try{
-            NSLog(@"You choose Camera");
+
             ImagePicker.sourceType = UIImagePickerControllerSourceTypeCamera;
-            chooseType =1;
+
             [self presentViewController:ImagePicker animated:YES completion:NULL];
         }
         @catch(NSException *ex)
@@ -153,26 +216,11 @@
         }
     }
     if (buttonIndex ==1) {
-        NSLog(@"You choose go to PhotoLibarary");
         
         ImagePicker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
-        chooseType =0;
+
         [self presentViewController:ImagePicker animated:YES completion:NULL];
     }
-    if (buttonIndex ==2) {
-        NSLog(@"Cancel Actionsheet");
-        chooseType =0;
-    }
-}
-
-
-//action choose image from photoLibrary
-- (IBAction)ChooseImageClicked:(id)sender {
-    NSLog(@"You choose go to PhotoLibarary");
-    
-    ImagePicker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
-    chooseType =0;
-    [self presentViewController:ImagePicker animated:YES completion:NULL];
 }
 
 //truyen du lieu sang view crop image
@@ -183,8 +231,8 @@
         testViewController *destViewController = segue.destinationViewController;
         destViewController.lkBoundView = self.boundView;
         destViewController.lkImageToCrop= self.imageView.image;
-        destViewController.lkChooseType = chooseType;
         destViewController.lkViewController = self;
+        destViewController.lkHeight = height;
     }
 }
 

@@ -24,25 +24,24 @@
 @implementation testViewController{
     UIImage *imageToResize;
 }
-UIImage *beginImage;
 
 //@auhtor phonex
 //case edit button(switch bright,sharpness etc.....)
-int caseEditButton;
+int caseEditButton,caseEffectButton;
 //count effect used 0= no effect
 int countEditUsed=0,countEffectUsed=0;
 UIImage *beginUIImage,*imgViewAfterEditImage,*imgViewAfterEffectImage;//use to contain the temp imageview image
-
+NSMutableDictionary *viewEditFilterDict;
 //@author phonex
 //Array for ScrollView
 NSArray *imageFilterScroll;
 NSArray *titleFilterScroll;
-UIButton *btnSingleEffect,*btnEffectImage,*btnEditImage;
+UIButton *btnEffectImage,*btnEditImage;
 //array for edit scroll view
 NSArray *imageEditScroll;
-UIButton *btnSingleEdit;
-
-
+UIButton *btnSingleEffect,*btnSingleEdit;
+UILabel *effectLabel;
+ImageProcessingCore *imageEditProcessing ;
 @synthesize navigationView,imageSliderView,imageView;
 @synthesize imageSlider;
 @synthesize effectScrollView,editScrollView;
@@ -50,7 +49,7 @@ UIButton *btnSingleEdit;
 
 @synthesize lkImageToCrop;
 @synthesize lkBoundView;
-@synthesize lkChooseType;
+@synthesize lkHeight;
 @synthesize lkViewController;
 @synthesize lkBack;
 @synthesize lkImageShare;
@@ -70,60 +69,62 @@ UIButton *btnSingleEdit;
     
     imageView.contentMode = UIViewContentModeScaleAspectFit;
     [super viewDidLoad];
-    
-    beginUIImage=imageView.image;
-    
-    
+      beginUIImage=imageView.image;
+    imageEditProcessing =[[ImageProcessingCore alloc] init];
     
     //@author phonex
     //create matrix filter
-    NSArray *editFilterName2= @[@"Brightness", @"Sharpenss",
-                                @"Contrast",@"Effect"];
+    NSArray *editFilterName2= [NSArray arrayWithObjects:@"BRIGHTNESS", @"SHARPEN",
+                               @"CONTRAST",@"WARMTH",@"SATURATION",@"VIGNETTE",@"Effect",nil];
     
     
     //create a effect scrollview
-    imageFilterScroll = [NSArray arrayWithObjects:@"e1.png",@"e2.png",@"e3.png",@"e4.png",@"e5.png",@"e6.png",@"e7.png",@"e8.png",@"e9.png",@"e10.png",@"e11.png", nil];
-    titleFilterScroll =[NSArray arrayWithObjects:@"Effect1",@"Effect2",@"Effect3",@"Effect4",@"Effect5",@"Effect6",@"Effect7",@"Effect8",@"Effect9",@"Effect10",@"Effect11", nil];
+    imageFilterScroll = [NSArray arrayWithObjects:@"original.jpg",@"e1.png",@"e2.png",@"e3.png",@"e4.png",@"e5.png",@"e6.png",@"e7.png",@"e8.png",@"e9.png",@"e10.png",@"e11.png", nil];
+    titleFilterScroll =[NSArray arrayWithObjects:@"Original",@"Effect 1",@"Effect 2",@"Effect 3",@"Effect 4",@"Effect 5",@"Effect 6",@"Effect 7",@"Effect 8",@"Effect 9",@"Effect 10",@"Effect 11", nil];
     
     int leftMargin = 0;
     for (int i = 0; i < [imageFilterScroll count]; i++)
     {
         
         btnSingleEffect= [UIButton buttonWithType:UIButtonTypeCustom];
-        btnSingleEffect.frame=CGRectMake(leftMargin, 10, SCREEN_WIDTH-10, SCREEN_HEIGHT-10);
-        
+        btnSingleEffect.frame=CGRectMake(leftMargin+10, 10, SCREEN_WIDTH-50, SCREEN_HEIGHT-22);
         NSString *cacheImage = [NSString stringWithFormat:@"%@",[imageFilterScroll objectAtIndex:i]];
-        
         UIImage *niceImage = [UIImage imageNamed:cacheImage];
         btnSingleEffect.tag=i+2;
         [btnSingleEffect setBackgroundImage:niceImage forState:UIControlStateNormal];
         [effectScrollView addSubview:btnSingleEffect];
         
-        UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(leftMargin-2, 82, 120, 28)
-                          ];
-        [label setTextAlignment:NSTextAlignmentCenter];
-        [label setBackgroundColor:[UIColor clearColor]];
-        [label setText:[titleFilterScroll objectAtIndex:i]];
+        if(i<[imageFilterScroll count]-1){
+            UIImageView *tempImageView=[[UIImageView alloc] initWithFrame:CGRectMake(leftMargin+94,0,0.3,80)
+                                        ];
+            tempImageView.image=[UIImage imageNamed:@"upload-background2.png"];
+            [effectScrollView addSubview:tempImageView];
+        }
         
-        
-        [label setFont:[UIFont fontWithName:@"Helvetica" size:16]];
-        [label setTextColor:[UIColor whiteColor]];
-        [effectScrollView addSubview:label];
-        leftMargin += SCREEN_WIDTH;
+        effectLabel = [[UILabel alloc] initWithFrame:CGRectMake(leftMargin-14, 60, 120, 20)
+                       ];
+        effectLabel.tag=i+12;
+        [effectLabel setTextAlignment:NSTextAlignmentCenter];
+        [effectLabel setBackgroundColor:[UIColor clearColor]];
+        [effectLabel setText:[titleFilterScroll objectAtIndex:i]];
+        [effectLabel setFont:[UIFont fontWithName:@"Noteworthy-Light" size:14]];
+        [effectLabel setTextColor:[UIColor whiteColor]];
+        [effectScrollView addSubview:effectLabel];
+        leftMargin += SCREEN_WIDTH-20;
         [btnSingleEffect addTarget:self action:@selector(effectFilterSelected:) forControlEvents:UIControlEventTouchUpInside];
     }
-    CGSize contentSize = CGSizeMake(leftMargin, SCREEN_HEIGHT+28);
+    CGSize contentSize = CGSizeMake(leftMargin, SCREEN_HEIGHT);
     [self.effectScrollView setContentSize: contentSize];
     
     //create a edit scroll view
-    [editScrollView setFrame:CGRectMake(0,365, 320, 100)];
-    imageEditScroll = [NSArray arrayWithObjects:@"brightnesstool@2x.png",@"sharpentool@2x.png",@"contrasttool@2x.png", nil];
+    [editScrollView setFrame:CGRectMake(0,380, 320, 90)];
+    imageEditScroll = [NSArray arrayWithObjects:@"brightnesstool@2x.png",@"sharpentool@2x.png",@"contrasttool@2x.png",@"temptool@2x.png",@"saturationtool@2x.png",@"focustool@2x.png",nil];
     leftMargin=0;
     for (int i = 0; i < [editFilterName2 count]-1; i++)
     {
         
         btnSingleEdit= [UIButton buttonWithType:UIButtonTypeCustom];
-        btnSingleEdit.frame=CGRectMake(leftMargin, 10, SCREEN_WIDTH-80, SCREEN_HEIGHT-40);
+        btnSingleEdit.frame=CGRectMake(leftMargin+20, 10, SCREEN_WIDTH-80, SCREEN_HEIGHT-32);
         
         NSString *cacheImage = [NSString stringWithFormat:@"%@",[imageEditScroll objectAtIndex:i]];
         
@@ -132,20 +133,27 @@ UIButton *btnSingleEdit;
         [btnSingleEdit setBackgroundImage:niceImage forState:UIControlStateNormal];
         [editScrollView addSubview:btnSingleEdit];
         
-        UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(leftMargin-2, 82, 120, 28)
+        if(i<[editFilterName2 count]-2){
+            UIImageView *tempImageView=[[UIImageView alloc] initWithFrame:CGRectMake(leftMargin+80,0,0.3,90)
+                                        ];
+            tempImageView.image=[UIImage imageNamed:@"upload-background2.png"];
+            [editScrollView addSubview:tempImageView];
+        }
+        
+        
+        UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(leftMargin-8, 57, 100, 28)
                           ];
         [label setTextAlignment:NSTextAlignmentCenter];
         [label setBackgroundColor:[UIColor clearColor]];
         [label setText:[editFilterName2 objectAtIndex:i]];
-        
-        
-        [label setFont:[UIFont fontWithName:@"Helvetica" size:16]];
+        [label setFont:[UIFont fontWithName:@"Noteworthy-Light" size:10]];
         [label setTextColor:[UIColor whiteColor]];
         [editScrollView addSubview:label];
-        leftMargin += SCREEN_WIDTH;
+        leftMargin += SCREEN_WIDTH-40;
         [btnSingleEdit addTarget:self action:@selector(editFilterSelected:) forControlEvents:UIControlEventTouchUpInside];
     }
-    [self.editScrollView setContentSize: contentSize];
+    CGSize contentEditSize = CGSizeMake(leftMargin, SCREEN_HEIGHT);
+    [self.editScrollView setContentSize: contentEditSize];
     effectScrollView.hidden=NO;
     editScrollView.hidden=YES;
     
@@ -173,10 +181,139 @@ UIButton *btnSingleEdit;
 }
 
 
+
+
+- (void) effectFilterSelected:(id)sender{
+    //int caseEffectButton=[sender tag];
+    //countEffectUsed=1;
+    if(countEffectUsed==0){
+        caseEffectButton=[sender tag];
+        UILabel *label = (UILabel *)[self.view viewWithTag:10+caseEffectButton];
+        [label setTextColor:[UIColor colorWithRed:(73/255.f) green:(153/255.f) blue:(213/255.f) alpha:1.0f]];
+        
+    }
+    else{
+        NSLog(@"bien label @%d",caseEffectButton);
+        UILabel *label = (UILabel *)[self.view viewWithTag:10+caseEffectButton];
+        [label setTextColor:[UIColor whiteColor]];
+        caseEffectButton=[sender tag];
+        UILabel *label2 = (UILabel *)[self.view viewWithTag:10+caseEffectButton];
+        [label2 setTextColor:[UIColor colorWithRed:(73/255.f) green:(153/255.f) blue:(213/255.f) alpha:1.0f]];
+    }
+    countEffectUsed=1;
+    UIImage *tempEffectImage,*tempEffectImage2;
+    tempEffectImage2=beginUIImage;
+    
+    if (countEditUsed==0) {
+        tempEffectImage=beginUIImage;
+    }
+    else{
+        
+        tempEffectImage=imgViewAfterEditImage;
+        countEffectUsed=0;
+    }
+    
+    if(caseEffectButton==2){
+    
+        imageView.image=beginUIImage;
+        countEffectUsed=0;
+    }
+    
+    else{
+    UIActivityIndicatorView *activityIndicator=[[UIActivityIndicatorView alloc] initWithFrame:CGRectMake(0, 0, 320,280)];
+    [activityIndicator setActivityIndicatorViewStyle:UIActivityIndicatorViewStyleWhiteLarge];
+    //    activityIndicator.center=[self tableView].center;
+    [ activityIndicator setColor:[UIColor colorWithRed:(73/255.f) green:(153/255.f) blue:(230/255.f) alpha:1.0f]];
+    [imageView addSubview:activityIndicator];
+    [activityIndicator startAnimating];
+    dispatch_queue_t backgroundQueue = dispatch_queue_create("image effect processing", 0);
+    dispatch_queue_t backgroundQueue2= dispatch_queue_create("image effect processin2g2", 0);
+    
+    dispatch_async(backgroundQueue, ^{
+        
+        UIImage *tempImage=[imageEditProcessing effectImageProcessing:tempEffectImage editTag:caseEffectButton];
+        
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [activityIndicator stopAnimating];
+            imageView.image=tempImage;
+        });
+               dispatch_async(backgroundQueue2, ^{
+                   imgViewAfterEffectImage=[imageEditProcessing effectImageProcessing:tempEffectImage2 editTag:caseEffectButton];
+               });
+        //imgViewAfterEffectImage=[imageEditProcessing effectImageProcessing:tempEffectImage2 editTag:caseEffectButton];
+    });
+    }
+
+}
+
+-(void) editFilterSelected:(id)sender{
+    [imageSliderView setFrame:CGRectMake(0,380, 320, 90)];
+    editScrollView.hidden=YES;
+    imageSliderView.hidden=NO;
+    
+    int btEditFilterTag=[sender tag];
+    switch (btEditFilterTag) {
+        case 2:
+            imageSlider.maximumValue=0.5;
+            imageSlider.minimumValue=-0.5;
+            imageSlider.value=[[viewEditFilterDict objectForKey:@"Brightness"] floatValue];
+            
+            caseEditButton=2;
+            
+            
+            break;
+        case 3:
+            imageSlider.maximumValue=1;
+            imageSlider.minimumValue=-1;
+            imageSlider.value=[[viewEditFilterDict objectForKey:@"Sharpeness"] floatValue];
+            
+            caseEditButton=3;
+            
+            
+            break;
+            
+            
+        case 4:
+            imageSlider.minimumValue=0.0;
+            imageSlider.maximumValue=2.0;
+            imageSlider.value=[[viewEditFilterDict objectForKey:@"Contrast"] floatValue];
+            
+            caseEditButton=4;
+            
+            break;
+        case 5:
+            caseEditButton =5;
+            imageSlider.minimumValue=-1.0;
+            imageSlider.maximumValue=2.0;
+            imageSlider.value=[[viewEditFilterDict objectForKey:@"Exposure"] floatValue];
+            break;
+        case 6:
+            caseEditButton =6;
+            imageSlider.minimumValue=0.0;
+            imageSlider.maximumValue=2.0;
+            imageSlider.value=[[viewEditFilterDict objectForKey:@"Saturation"] floatValue];
+            
+            break;
+            
+        case 7:
+            caseEditButton =7;
+            imageSlider.minimumValue=0.5;
+            imageSlider.maximumValue=1.0;
+            imageSlider.value=[[viewEditFilterDict objectForKey:@"Vignette"] floatValue];
+            break;
+        default:
+            break;
+    }
+    
+}
+
 - (IBAction)changeSliderValue:(id)sender {
     //
-    countEditUsed=1;
-    UIImage *beginImage2;
+   
+    
+    UIImage *beginImage2;UIImage *beginImage;
+
     float slideValue = imageSlider.value;
     NSLog(@"gia tri slider %f va case edit button %d",slideValue,caseEditButton);
     NSLog(@"gia tri count effect %d",countEffectUsed);
@@ -190,68 +327,13 @@ UIButton *btnSingleEdit;
         beginImage=imgViewAfterEffectImage;
         
     }
-    ImageProcessingCore *imageEditProcessing =[[ImageProcessingCore alloc] init];
+    //ImageProcessingCore *imageEditProcessing =[[ImageProcessingCore alloc] init];
     
-    imageView.image= [imageEditProcessing editImageProcessing:beginImage withAmount:slideValue editTag:caseEditButton];
+    imageView.image= [imageEditProcessing editImageProcessing:beginImage withAmount:slideValue editTag:caseEditButton countInit:countEditUsed];
     
-    imgViewAfterEditImage=[imageEditProcessing editImageProcessing:beginImage2 withAmount:slideValue editTag:caseEditButton];//
-}
-
-- (void) effectFilterSelected:(id)sender{
-    int caseEffectButton=[sender tag];
-    countEffectUsed=1;
-    UIImage *tempEffectImage,*tempEffectImage2;
-    tempEffectImage2=beginUIImage;
-    NSLog(@"bien countediused %d",countEditUsed);
-    if (countEditUsed==0) {
-        tempEffectImage=beginUIImage;
-    }
-    else{
-        
-        tempEffectImage=imgViewAfterEditImage;
-    }
+    imgViewAfterEditImage=[imageEditProcessing editImageProcessing:beginImage2 withAmount:slideValue editTag:caseEditButton countInit:countEditUsed];//
     
-    
-    ImageProcessingCore *imageEffectProcessing =[[ImageProcessingCore alloc] init];
-    imageView.image=[imageEffectProcessing effectImageProcessing:tempEffectImage editTag:caseEffectButton];
-    imgViewAfterEffectImage=[imageEffectProcessing effectImageProcessing:tempEffectImage2 editTag:caseEffectButton];
-}
-
--(void) editFilterSelected:(id)sender{
-    [imageSliderView setFrame:CGRectMake(0,280, 320, 100)];
-    editScrollView.hidden=YES;
-    imageSliderView.hidden=NO;
-    
-    int btEditFilterTag=[sender tag];
-    switch (btEditFilterTag) {
-        case 2:
-            caseEditButton=2;
-            imageSlider.value=0.0;
-            imageSlider.maximumValue=0.5;
-            imageSlider.minimumValue=-0.5;
-            
-            break;
-        case 3:
-            
-            caseEditButton=3;
-            imageSlider.value=0.0;
-            imageSlider.maximumValue=1;
-            imageSlider.minimumValue=-1;
-            
-            break;
-            
-            
-        case 4:
-            caseEditButton=4;
-            imageSlider.value=1.0;
-            imageSlider.maximumValue=0.0;
-            imageSlider.maximumValue=2.0;
-            
-            break;
-        default:
-            break;
-    }
-    
+    countEditUsed=1;
 }
 
 
@@ -264,6 +346,44 @@ UIButton *btnSingleEdit;
     effectScrollView.hidden=YES;
     editScrollView.hidden=NO;
     
+    NSArray *editFilterName = @[@"Brightness", @"Sharpeness",
+                               @"Contrast",@"Exposure",@"Saturation",@"Vignette",@"Effect"];
+    
+    NSArray *filterValue = @[[NSNumber numberWithFloat:0.0],
+                    [NSNumber numberWithFloat:0.0],
+                    [NSNumber numberWithFloat:1.0],
+                    [NSNumber numberWithFloat:0.0],
+                    [NSNumber numberWithFloat:1.0],
+                    [NSNumber numberWithFloat:0],
+                    [NSNumber numberWithInt:0]];
+  
+    NSMutableDictionary *tempDict=[NSMutableDictionary dictionaryWithObjects:filterValue forKeys:editFilterName];;
+    if(countEditUsed==0){
+         viewEditFilterDict = [NSMutableDictionary dictionaryWithObjects:filterValue forKeys:editFilterName];
+
+    
+    }
+    
+    else{
+    
+        viewEditFilterDict=imageEditProcessing.allEditFilter;
+   
+        for(int i=0;i<6;i++){
+            
+            if ([[viewEditFilterDict objectForKey:[editFilterName objectAtIndex:i]] floatValue]!=[[tempDict objectForKey:[editFilterName objectAtIndex:i]] floatValue]) {
+                UIImageView *tempImageView=[[UIImageView alloc] initWithFrame:CGRectMake(i*80,78,80,2)
+                                            ];
+                tempImageView.image=[UIImage imageNamed:@"sidebar-background.png"];
+                [editScrollView addSubview:tempImageView];
+            }
+            
+            
+        }
+    }
+            NSLog(@"%@",viewEditFilterDict);
+    
+
+
     
 }
 
@@ -277,7 +397,6 @@ UIButton *btnSingleEdit;
     effectScrollView.hidden=NO;
     editScrollView.hidden=YES;
 }
-
 
 
 
@@ -314,7 +433,7 @@ UIButton *btnSingleEdit;
     
     NSInteger imageToCropDataSize = imageData.length;
     
-    NSLog(@"original size %d Bytes", imageToCropDataSize);
+    NSLog(@"original size %ld Bytes", (long)imageToCropDataSize);
     NSLog(@"Resault crop size %d Bytes", CroppedImageData.length);
     
     return croppedImage;
@@ -326,11 +445,11 @@ UIButton *btnSingleEdit;
     UIImage *imageResault;
     //call resize image class
     resizeImage *imageResize = [[resizeImage alloc]init];
-    imageResault = [imageResize resizeImage:imageToResize width:320 height:390];
+    imageResault = [imageResize resizeImage:imageToResize width:320 height:lkHeight];
     NSData *resizedImageData = [imageResize thumbnailImageData];
     
     
-    //    imageView.image = [UIImage imageWithData:resizedImageData];
+    { //    imageView.image = [UIImage imageWithData:resizedImageData];
     
     //    if (lkChooseType ==1) {
     //        imageView.center =CGPointMake(imageView.frame.size.width/2, imageView.frame.size.height/2);
@@ -340,9 +459,16 @@ UIButton *btnSingleEdit;
     
     // imageView.image = [imageView.image fixOrientation];
     //hien thi kich thuoc sau khi resize
+<<<<<<< HEAD
+ //   NSInteger resizedImageDataSize = resizedImageData.length;
+ //   NSLog(@"resized size %d Bytes", resizedImageDataSize);
+//    NSLog(@"resault resize width %f height %f", imageResault.size.width,imageResault.size.height);
+    }
+=======
     NSInteger resizedImageDataSize = resizedImageData.length;
-    NSLog(@"resized size %d Bytes", resizedImageDataSize);
+    NSLog(@"resized size %ld Bytes", (long)resizedImageDataSize);
     NSLog(@"resault resize width %f height %f", imageResault.size.width,imageResault.size.height);
+>>>>>>> FETCH_HEAD
     return imageResault;
     
 }
@@ -357,10 +483,14 @@ UIButton *btnSingleEdit;
         
     }
     if ([segue.identifier isEqualToString:@"BackCrop"]) {
+        countEditUsed=0;
+        countEffectUsed=0;
+//        beginUIImage=imageView.image;
         NSLog(@"Back to crop");
         ViewController *destination = segue.destinationViewController;
         destination.lkBackImage = lkViewController.imageView.image;
         destination.lkTabBar = lkViewController.tabBarController;
+        
     }
 }
 

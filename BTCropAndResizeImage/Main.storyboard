@@ -1,10 +1,34 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5056" systemVersion="12E55" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="k1J-8r-evs">
+<<<<<<< HEAD
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5056" systemVersion="12E55" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="qA3-I9-eCK">
+=======
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5056" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="k1J-8r-evs">
+>>>>>>> FETCH_HEAD
     <dependencies>
-        <deployment version="1792" defaultVersion="1536" identifier="iOS"/>
+        <deployment version="1296" defaultVersion="1536" identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
     </dependencies>
     <scenes>
+        <!--Tab Bar Controller-->
+        <scene sceneID="NhC-3Z-rLv">
+            <objects>
+                <tabBarController definesPresentationContext="YES" id="qA3-I9-eCK" sceneMemberID="viewController">
+                    <nil key="simulatedBottomBarMetrics"/>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
+                    <tabBar key="tabBar" contentMode="scaleToFill" id="zAE-0R-PBV">
+                        <rect key="frame" x="129" y="330" width="163" height="49"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    </tabBar>
+                    <connections>
+                        <segue destination="ZHN-Jg-irM" kind="relationship" relationship="viewControllers" id="duM-BS-6ov"/>
+                        <segue destination="vXZ-lx-hvc" kind="relationship" relationship="viewControllers" id="bH2-RW-D9M"/>
+                    </connections>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="hGG-R3-ai3" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1704" y="-1074"/>
+        </scene>
         <!--View Controller - Handle-->
         <scene sceneID="ufC-wZ-h7g">
             <objects>
@@ -13,12 +37,33 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
+
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="czQ-Jh-Ej6">
+                                <rect key="frame" x="0.0" y="436" width="320" height="44"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                                <items>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="BjB-I8-Na4"/>
+                                    <barButtonItem title="choose" id="Ph3-ck-nHc">
+                                        <connections>
+                                            <action selector="ChooseImageClicked:" destination="vXZ-lx-hvc" id="Q1S-9J-54L"/>
+                                        </connections>
+                                    </barButtonItem>
+                                </items>
+                            </toolbar>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="Auz-K4-FQW">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="430"/>
+
                             <imageView userInteractionEnabled="NO" alpha="0.20000000000000001" tag="-10" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="default.png" id="ZgU-rc-4wA">
-                                <rect key="frame" x="0.0" y="44" width="320" height="430"/>
+                                <rect key="frame" x="0.0" y="44" width="320" height="405"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                             </imageView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="Auz-K4-FQW">
+<<<<<<< HEAD
+                                <rect key="frame" x="0.0" y="44" width="320" height="369"/>
+=======
                                 <rect key="frame" x="0.0" y="44" width="320" height="390"/>
+
+>>>>>>> FETCH_HEAD
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             </imageView>
@@ -26,7 +71,7 @@
                                 <rect key="frame" x="0.0" y="44" width="320" height="320"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                 <subviews>
-                                    <imageView userInteractionEnabled="NO" tag="2" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bound.png" id="pBG-kF-SAT">
+                                    <imageView userInteractionEnabled="NO" tag="2" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bound1.png" id="pBG-kF-SAT">
                                         <rect key="frame" x="0.0" y="0.0" width="320" height="320"/>
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -38,91 +83,150 @@
                                     <outletCollection property="gestureRecognizers" destination="Abh-IR-PVc" appends="YES" id="VxK-9t-mdv"/>
                                 </connections>
                             </view>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="MUf-BV-GQW">
-                                <rect key="frame" x="13" y="395" width="30" height="30"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
-                                <color key="tintColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                <state key="normal" image="picture.png"/>
-                                <connections>
-                                    <action selector="ChooseImageClicked:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="mF1-YH-QiN"/>
-                                </connections>
-                            </button>
-                            <navigationBar tag="10" contentMode="scaleToFill" id="7XA-ze-qRc">
+                            <navigationBar tag="10" contentMode="scaleToFill" barStyle="blackTranslucent" id="7XA-ze-qRc">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                 <items>
                                     <navigationItem id="n7d-fW-NYH">
-                                        <barButtonItem key="leftBarButtonItem" systemItem="camera" id="C0E-MD-AMq">
-                                            <connections>
-                                                <action selector="CameraClicked:" destination="vXZ-lx-hvc" id="1ze-cG-ZtX"/>
-                                            </connections>
+                                        <barButtonItem key="leftBarButtonItem" style="plain" id="SU3-RA-6WM">
+                                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="Ee1-hp-rRj">
+                                                <rect key="frame" x="16" y="7" width="39" height="30"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <state key="normal" image="cameraBlue.png">
+                                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="CameraClicked:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="ULX-SL-nAK"/>
+                                                </connections>
+                                            </button>
                                         </barButtonItem>
-                                        <barButtonItem key="rightBarButtonItem" image="crop.png" id="Fhj-Sb-gQ1">
-                                            <connections>
-                                                <segue destination="j4e-Zf-QS4" kind="modal" identifier="FilterView" modalTransitionStyle="crossDissolve" id="MWz-8N-put"/>
-                                            </connections>
+                                        <barButtonItem key="rightBarButtonItem" style="plain" id="TAV-fn-Pat">
+                                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="HGF-EY-eyU">
+                                                <rect key="frame" x="274" y="7" width="30" height="30"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <state key="normal" image="cropBlue.png">
+                                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                </state>
+                                                <connections>
+                                                    <segue destination="j4e-Zf-QS4" kind="modal" identifier="FilterView" modalTransitionStyle="crossDissolve" id="c0E-qF-aFV"/>
+                                                </connections>
+                                            </button>
                                         </barButtonItem>
                                     </navigationItem>
                                 </items>
                             </navigationBar>
-                            <button opaque="NO" alpha="0.5" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="UYN-b5-w3x">
-                                <rect key="frame" x="129" y="366" width="63" height="68"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="tintColor" red="0.057313162090000001" green="0.02248342763" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                <state key="normal" backgroundImage="home.png"/>
-                                <connections>
-                                    <segue destination="k1J-8r-evs" kind="modal" modalTransitionStyle="flipHorizontal" id="kya-21-P5i"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" alpha="0.5" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="clip" id="QdX-Nl-sYq">
-                                <rect key="frame" x="219" y="435" width="30" height="30"/>
+                            <view contentMode="scaleToFill" id="ndZ-nI-6TE">
+                                <rect key="frame" x="0.0" y="430" width="320" height="50"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                                <state key="normal" image="pictures.png"/>
-                            </button>
-                            <button opaque="NO" alpha="0.5" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="bottom" lineBreakMode="middleTruncation" id="cKa-9B-z9R">
-                                <rect key="frame" x="67" y="435" width="30" height="30"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                                <color key="tintColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                <state key="normal" image="home1.png">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <segue destination="k1J-8r-evs" kind="modal" id="V8C-SU-cW5"/>
-                                </connections>
-                            </button>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" alpha="0.5" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Home" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="JmV-rF-q8R">
-                                <rect key="frame" x="67" y="466" width="30" height="14"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="9"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" alpha="0.5" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Handle" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="5PQ-2Z-L3x">
-                                <rect key="frame" x="219" y="466" width="30" height="14"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="9"/>
-                                <color key="textColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                                <subviews>
+                                    <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" barStyle="blackTranslucent" id="Ei3-TL-JoI">
+                                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                        <items>
+                                            <barButtonItem width="53" style="plain" systemItem="fixedSpace" id="nAz-xl-EPd"/>
+                                            <barButtonItem style="plain" id="eey-Zl-TFW">
+                                                <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="HFe-6d-K92">
+                                                    <rect key="frame" x="69" y="7" width="30" height="30"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <state key="normal" image="home1Blue.png">
+                                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                    </state>
+                                                    <connections>
+                                                        <segue destination="qA3-I9-eCK" kind="modal" modalTransitionStyle="flipHorizontal" id="aJf-AG-LpM"/>
+                                                    </connections>
+                                                </button>
+                                            </barButtonItem>
+                                            <barButtonItem width="120" style="plain" systemItem="fixedSpace" id="ef2-Aa-y6L"/>
+                                            <barButtonItem enabled="NO" style="plain" id="BXw-nY-Brg">
+                                                <button key="customView" opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="o7F-U5-cnm">
+                                                    <rect key="frame" x="229" y="7" width="30" height="30"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <state key="normal" image="handleBlue.png">
+                                                        <color key="titleColor" red="0.1041756363" green="0.55595967619999997" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                    </state>
+                                                </button>
+                                            </barButtonItem>
+                                        </items>
+                                    </toolbar>
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Handle" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="GvJ-WH-RgI">
+                                        <rect key="frame" x="227" y="37" width="37" height="9"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                                        <color key="textColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Home" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="lzX-an-dCJ">
+                                        <rect key="frame" x="71" y="37" width="37" height="9"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" alpha="0.20000000000000001" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="HQs-7h-T7O">
+                                        <rect key="frame" x="158" y="3" width="160" height="44"/>
+                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
+                                        <color key="tintColor" red="0.1041756363" green="0.55595967619999997" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" alpha="0.20000000000000001" contentMode="scaleToFill" enabled="NO" highlighted="YES" selected="YES" contentHorizontalAlignment="fill" contentVerticalAlignment="fill" buttonType="roundedRect" lineBreakMode="middleTruncation" id="Irn-Fn-YCr">
+                                        <rect key="frame" x="158" y="3" width="160" height="44"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <state key="normal" title="dafdsfasdfasdfasdfsfdgdsfgsdgsdfg">
+                                            <color key="titleColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                            <color key="titleShadowColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        </state>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
+                            </view>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Handle" image="pictures.png" id="tY4-56-TaY"/>
+<<<<<<< HEAD
+                    <tabBarItem key="tabBarItem" title="Handle" image="handleBlue.png" id="ifO-Zh-Lpe"/>
+=======
+
+                    <navigationItem key="navigationItem" id="hi9-TH-irK">
+                        <barButtonItem key="leftBarButtonItem" systemItem="camera" id="R8U-K7-fWE">
+                            <connections>
+                                <action selector="CameraClicked:" destination="vXZ-lx-hvc" id="KNO-IV-H1F"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" title="crop" width="32" style="plain" id="tJU-vu-YnV">
+                            <connections>
+                                <segue destination="j4e-Zf-QS4" kind="push" identifier="filterView" id="zy9-1B-fgC"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+          <tabBarItem key="tabBarItem" title="Handle" image="pictures.png" id="tY4-56-TaY"/>
+
+>>>>>>> FETCH_HEAD
                     <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="320" height="500"/>
                     <connections>
-                        <outlet property="boundView" destination="WXc-N4-rik" id="iMS-o4-8Lb"/>
+                        <outlet property="boundView" destination="WXc-N4-rik" id="xwk-NV-QMx"/>
+                        <outlet property="btnBarCrop" destination="TAV-fn-Pat" id="G94-9n-cMK"/>
                         <outlet property="imageView" destination="Auz-K4-FQW" id="3jU-9i-9RD"/>
+                        <outlet property="viewBottom" destination="ndZ-nI-6TE" id="03G-TM-WjY"/>
+                        <outlet property="viewBound" destination="WXc-N4-rik" id="1B1-IE-sr2"/>
                     </connections>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
                 <panGestureRecognizer minimumNumberOfTouches="1" id="Abh-IR-PVc">
                     <connections>
                         <action selector="handlePan:" destination="vXZ-lx-hvc" id="Gdg-re-CJY"/>
                     </connections>
                 </panGestureRecognizer>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
             </objects>
+<<<<<<< HEAD
+            <point key="canvasLocation" x="-1160" y="-1772"/>
+=======
+
             <point key="canvasLocation" x="-1003" y="-1330"/>
+
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="9UL-e3-sOc">
@@ -143,6 +247,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ey8-qO-mOO" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-1392" y="-1330"/>
+>>>>>>> FETCH_HEAD
         </scene>
         <!--View Controller - Home-->
         <scene sceneID="blV-n3-FNW">
@@ -152,7 +257,9 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleAspectFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="bHb-SN-Zae">
+
+                            <tableView clipsSubviews="YES" contentMode="scaleAspectFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="bHb-SN-Zae">
+
                                 <rect key="frame" x="0.0" y="44" width="320" height="455"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -167,31 +274,71 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="color" red="0.28310111240000002" green="0.4143894273" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                             </activityIndicatorView>
-                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" tag="5" contentMode="scaleToFill" id="LRU-2O-4IS">
+<<<<<<< HEAD
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" tag="5" contentMode="scaleToFill" barStyle="blackTranslucent" id="LRU-2O-4IS">
+=======
+
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="LRU-2O-4IS">
+
+>>>>>>> FETCH_HEAD
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES"/>
                                 <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                 <items>
-                                    <barButtonItem image="trash_empty.png" width="100" id="5BY-g5-z33">
+<<<<<<< HEAD
+                                    <barButtonItem style="plain" id="eYy-g1-T67">
+                                        <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="Ijk-Zi-boE">
+                                            <rect key="frame" x="16" y="7" width="30" height="30"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <state key="normal" image="trash_emptyBlue.png">
+                                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                            </state>
+                                            <connections>
+                                                <action selector="DeleteCache:" destination="ZHN-Jg-irM" eventType="touchUpInside" id="Nez-7o-Bhq"/>
+                                            </connections>
+                                        </button>
+                                    </barButtonItem>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="uP8-lT-kCb"/>
+                                    <barButtonItem style="plain" id="hGW-4K-nwb">
+                                        <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="yct-Xi-Dbu">
+                                            <rect key="frame" x="274" y="7" width="30" height="30"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <state key="normal" image="button_reloadBlue.png">
+                                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                            </state>
+                                            <connections>
+                                                <action selector="reloadData:" destination="ZHN-Jg-irM" eventType="touchUpInside" id="Vw8-bm-grd"/>
+                                            </connections>
+                                        </button>
+=======
+
+                                    <barButtonItem title="Delete Cache" width="135.5" id="5BY-g5-z33">
+
                                         <inset key="imageInsets" minX="30" minY="0.0" maxX="0.0" maxY="0.0"/>
+
                                         <color key="tintColor" red="0.28310111240000002" green="0.4143894273" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         <connections>
                                             <action selector="DeleteCache:" destination="ZHN-Jg-irM" id="lRa-rn-07b"/>
                                         </connections>
                                     </barButtonItem>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="uP8-lT-kCb"/>
+
+                                    <barButtonItem systemItem="refresh" id="YfY-m7-G7N">
+
                                     <barButtonItem image="button_reload.png" width="100" id="YfY-m7-G7N">
                                         <inset key="imageInsets" minX="0.0" minY="0.0" maxX="30" maxY="0.0"/>
+
                                         <connections>
                                             <action selector="reloadData:" destination="ZHN-Jg-irM" id="bzB-aL-htH"/>
                                         </connections>
+>>>>>>> FETCH_HEAD
                                     </barButtonItem>
                                 </items>
                             </toolbar>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Home" image="home1.png" id="2T3-Zi-KqG"/>
+                    <tabBarItem key="tabBarItem" title="Home" image="home1Blue.png" id="2T3-Zi-KqG"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
                     <connections>
                         <outlet property="onLoadIndicator" destination="JdS-mI-gBG" id="35o-Pv-Ixo"/>
@@ -200,7 +347,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="w5J-Ou-UrI" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1003" y="-691"/>
+            <point key="canvasLocation" x="-1047" y="-787"/>
         </scene>
         <!--Test View Controller-->
         <scene sceneID="Scb-gr-Zrp">
@@ -214,56 +361,101 @@
                                 <rect key="frame" x="0.0" y="44" width="320" height="320"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                             </imageView>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFit" alwaysBounceHorizontal="YES" showsVerticalScrollIndicator="NO" id="yWK-B5-vEI">
-                                <rect key="frame" x="0.0" y="400" width="321" height="80"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
-                                <color key="backgroundColor" cocoaTouchSystemColor="darkTextColor"/>
-                            </scrollView>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceHorizontal="YES" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" indicatorStyle="black" id="Fhv-76-VTb">
-                                <rect key="frame" x="-1" y="276" width="321" height="83"/>
+                            <scrollView clipsSubviews="YES" contentMode="scaleAspectFit" alwaysBounceHorizontal="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" id="yWK-B5-vEI">
+                                <rect key="frame" x="0.0" y="400" width="320" height="80"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                 <color key="backgroundColor" white="0.14999999999999999" alpha="1" colorSpace="calibratedWhite"/>
                             </scrollView>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceHorizontal="YES" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" indicatorStyle="black" id="Fhv-76-VTb">
+                                <rect key="frame" x="0.0" y="276" width="320" height="80"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                                <color key="backgroundColor" white="0.14999999999999999" alpha="1" colorSpace="calibratedWhite"/>
+                            </scrollView>
+
+                            <view hidden="YES" contentMode="scaleToFill" id="8Pb-aZ-hsF">
+                                <rect key="frame" x="-1" y="93" width="321" height="36"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                                <subviews>
+                                    <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="-0.5" maxValue="0.5" id="gWt-I6-sas">
+                                        <rect key="frame" x="32" y="0.0" width="256" height="37"/>
+
                             <view opaque="NO" contentMode="scaleToFill" id="RSM-7M-Jwh">
                                 <rect key="frame" x="0.0" y="357" width="320" height="45"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                 <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
                             <view hidden="YES" contentMode="scaleToFill" id="8Pb-aZ-hsF">
-                                <rect key="frame" x="-1" y="93" width="320" height="36"/>
+                                <rect key="frame" x="0.0" y="93" width="320" height="80"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                 <subviews>
                                     <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="-0.5" maxValue="0.5" id="gWt-I6-sas">
-                                        <rect key="frame" x="33" y="0.0" width="255" height="37"/>
+                                        <rect key="frame" x="8" y="19" width="301" height="37"/>
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                         <connections>
                                             <action selector="changeSliderValue:" destination="j4e-Zf-QS4" eventType="valueChanged" id="TI0-xr-Sb6"/>
                                         </connections>
                                     </slider>
                                 </subviews>
-                                <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" white="0.14999999999999999" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
+<<<<<<< HEAD
+                            <navigationBar contentMode="scaleToFill" barStyle="blackTranslucent" id="sv8-Bk-bKf">
+=======
+
+                            <view opaque="NO" contentMode="scaleToFill" id="RSM-7M-Jwh">
+                                <rect key="frame" x="0.0" y="357" width="320" height="45"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                                <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="Pde-0U-2KZ">
+                        <nil key="title"/>
+                        <barButtonItem key="rightBarButtonItem" systemItem="done" id="MaK-og-F2q">
+                            <connections>
+                                <segue destination="G9F-z2-nit" kind="push" identifier="ShareView" id="esZ-0x-hzL"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+
                             <navigationBar contentMode="scaleToFill" id="sv8-Bk-bKf">
+>>>>>>> FETCH_HEAD
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                 <items>
                                     <navigationItem id="d4Z-Bh-kHR">
-                                        <barButtonItem key="leftBarButtonItem" image="back.png" id="P0c-nh-oCX">
-                                            <connections>
-                                                <segue destination="vXZ-lx-hvc" kind="modal" identifier="BackCrop" id="f95-xm-AaU"/>
-                                            </connections>
+                                        <barButtonItem key="leftBarButtonItem" style="plain" id="eql-os-3ha">
+                                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="xhd-QM-7OX">
+                                                <rect key="frame" x="16" y="7" width="30" height="30"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <state key="normal" image="backBlue.png">
+                                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                </state>
+                                                <connections>
+                                                    <segue destination="vXZ-lx-hvc" kind="modal" identifier="BackCrop" modalTransitionStyle="flipHorizontal" id="Qb9-px-Ik7"/>
+                                                </connections>
+                                            </button>
                                         </barButtonItem>
-                                        <barButtonItem key="rightBarButtonItem" image="notification_done.png" id="fG7-vo-bw1">
-                                            <connections>
-                                                <segue destination="MPY-qM-sfy" kind="modal" identifier="ShareView" id="gkA-ov-Fd1"/>
-                                            </connections>
+                                        <barButtonItem key="rightBarButtonItem" style="plain" id="UzJ-nv-v9P">
+                                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="7B7-kk-9Au">
+                                                <rect key="frame" x="274" y="7" width="30" height="30"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <state key="normal" image="doneBlue.png">
+                                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                </state>
+                                                <connections>
+                                                    <segue destination="MPY-qM-sfy" kind="modal" identifier="ShareView" modalTransitionStyle="flipHorizontal" id="2f1-1y-ZSH"/>
+                                                </connections>
+                                            </button>
                                         </barButtonItem>
                                     </navigationItem>
                                 </items>
                             </navigationBar>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
                     </view>
+
                     <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
                     <connections>
                         <outlet property="editScrollView" destination="Fhv-76-VTb" id="MfB-jm-e2U"/>
@@ -276,7 +468,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8p9-wo-VVG" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-651" y="-1330"/>
+            <point key="canvasLocation" x="-446" y="-1986"/>
         </scene>
         <!--Share View Controller-->
         <scene sceneID="YQf-lA-G7s">
@@ -318,6 +510,7 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
+                                <color key="shadowColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="33B-cX-OrH">
                                 <rect key="frame" x="0.0" y="334" width="158" height="45"/>
@@ -359,6 +552,15 @@
                                     <action selector="LTTTeam8Clicked:" destination="MPY-qM-sfy" eventType="touchUpInside" id="Oki-Xm-4wV"/>
                                 </connections>
                             </button>
+
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="SAVE" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="HtJ-Ue-yNv">
+                                <rect key="frame" x="10" y="214" width="306" height="21"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+
                             <view contentMode="scaleToFill" id="1nb-Ug-veh">
                                 <rect key="frame" x="0.0" y="44" width="320" height="113"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -377,21 +579,29 @@
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                             </view>
-                            <navigationBar contentMode="scaleToFill" id="aOv-dP-hbj">
+                            <navigationBar contentMode="scaleToFill" barStyle="blackTranslucent" id="aOv-dP-hbj">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                 <items>
                                     <navigationItem id="790-w2-id4">
-                                        <barButtonItem key="leftBarButtonItem" image="back.png" id="xmU-ZF-3rw">
-                                            <connections>
-                                                <segue destination="j4e-Zf-QS4" kind="modal" identifier="BackFilter" id="7Jc-uV-RqJ"/>
-                                            </connections>
+                                        <barButtonItem key="leftBarButtonItem" style="plain" id="ele-ML-1W4">
+                                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="rPf-8x-iGb">
+                                                <rect key="frame" x="16" y="7" width="30" height="30"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <state key="normal" image="backBlue.png">
+                                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                </state>
+                                                <connections>
+                                                    <segue destination="j4e-Zf-QS4" kind="modal" identifier="BackFilter" modalTransitionStyle="flipHorizontal" id="XEx-Aw-d76"/>
+                                                </connections>
+                                            </button>
                                         </barButtonItem>
                                     </navigationItem>
                                 </items>
                             </navigationBar>
+
                         </subviews>
-                        <color key="backgroundColor" red="0.90219514270000001" green="0.90219514270000001" blue="0.90219514270000001" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
                     </view>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
                     <connections>
@@ -401,26 +611,25 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="m5J-er-nbc" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-302" y="-1330"/>
+            <point key="canvasLocation" x="-454" y="-1148"/>
         </scene>
     </scenes>
     <resources>
-        <image name="back.png" width="30" height="30"/>
-        <image name="bound.png" width="320" height="320"/>
+        <image name="backBlue.png" width="30" height="30"/>
+        <image name="bound1.png" width="320" height="320"/>
         <image name="btnFacebook.png" width="158" height="45"/>
         <image name="btnLTTTeam8.png" width="158" height="45"/>
         <image name="btnSave.png" width="158" height="45"/>
         <image name="btnTwitter.png" width="158" height="45"/>
         <image name="btnWeibo.png" width="158" height="45"/>
-        <image name="button_reload.png" width="30" height="30"/>
-        <image name="crop.png" width="30" height="30"/>
+        <image name="button_reloadBlue.png" width="30" height="30"/>
+        <image name="cameraBlue.png" width="39" height="30"/>
+        <image name="cropBlue.png" width="30" height="30"/>
         <image name="default.png" width="320" height="430"/>
-        <image name="home.png" width="30" height="30"/>
-        <image name="home1.png" width="30" height="30"/>
-        <image name="notification_done.png" width="30" height="30"/>
-        <image name="picture.png" width="30" height="30"/>
-        <image name="pictures.png" width="30" height="30"/>
-        <image name="trash_empty.png" width="30" height="30"/>
+        <image name="doneBlue.png" width="30" height="30"/>
+        <image name="handleBlue.png" width="30" height="30"/>
+        <image name="home1Blue.png" width="30" height="30"/>
+        <image name="trash_emptyBlue.png" width="30" height="30"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
@@ -428,8 +637,7 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="kya-21-P5i"/>
-        <segue reference="f95-xm-AaU"/>
-        <segue reference="7Jc-uV-RqJ"/>
+        <segue reference="bH2-RW-D9M"/>
+        <segue reference="c0E-qF-aFV"/>
     </inferredMetricsTieBreakers>
 </document>

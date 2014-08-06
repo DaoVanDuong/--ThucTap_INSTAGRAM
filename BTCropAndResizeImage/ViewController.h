@@ -17,6 +17,12 @@
 @property (weak, nonatomic) IBOutlet UIView *boundView;
 @property (strong, nonatomic) UIImage *lkBackImage;
 @property (strong, nonatomic) UITabBarController *lkTabBar;
+@property (weak, nonatomic) IBOutlet UIView *viewBound;
+@property (weak, nonatomic) IBOutlet UIView *viewBottom;
+
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *btnBarCrop;
+
+@property (nonatomic) CGFloat height;//get height of frame imageView with mutilple screen
 
 -(IBAction)handlePan:(UIPanGestureRecognizer *)recognizer;
 
