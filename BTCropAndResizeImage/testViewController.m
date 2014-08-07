@@ -315,8 +315,8 @@ ImageProcessingCore *imageEditProcessing ;
             
         case 7:
             caseEditButton =7;
-            imageSlider.minimumValue=0.5;
-            imageSlider.maximumValue=1.0;
+            imageSlider.minimumValue=-2.0;
+            imageSlider.maximumValue=-0.5;
             imageSlider.value=[[viewEditFilterDict objectForKey:@"Vignette"] floatValue];
             break;
         default:
@@ -354,6 +354,7 @@ ImageProcessingCore *imageEditProcessing ;
 }
 
 
+
 - (void) editImage:(id)sender{
 //    [editScrollView setAlpha:0.f];
     CGRect animationUpFrame=CGRectMake(0, 400, editScrollView.frame.size.width, editScrollView.frame.size.height);
@@ -386,20 +387,23 @@ ImageProcessingCore *imageEditProcessing ;
                     [NSNumber numberWithFloat:1.0],
                     [NSNumber numberWithFloat:0.0],
                     [NSNumber numberWithFloat:1.0],
-                    [NSNumber numberWithFloat:0],
+                    [NSNumber numberWithFloat:-2.0],
                     [NSNumber numberWithInt:0]];
   
     NSMutableDictionary *tempDict=[NSMutableDictionary dictionaryWithObjects:filterValue forKeys:editFilterName];;
     if(countEditUsed==0){
          viewEditFilterDict = [NSMutableDictionary dictionaryWithObjects:filterValue forKeys:editFilterName];
-
-    
     }
-    
     else{
-    
         viewEditFilterDict=imageEditProcessing.allEditFilter;
+        float tempValue=[[imageEditProcessing.allEditFilter objectForKey:@"Vignette"] floatValue];
+        if(tempValue >0){
+            tempValue=-tempValue;
+        }
    
+        [viewEditFilterDict setObject:[NSNumber numberWithFloat:tempValue] forKey:@"Vignette"];
+
+         NSLog(@"temp dict%@",tempDict);
         for(int i=0;i<6;i++){
              UIImageView *tempSideBar = (UIImageView *)[self.view viewWithTag:30+i];
             if ([[viewEditFilterDict objectForKey:[editFilterName objectAtIndex:i]] floatValue]!=[[tempDict objectForKey:[editFilterName objectAtIndex:i]] floatValue]) {
@@ -522,18 +526,37 @@ ImageProcessingCore *imageEditProcessing ;
         destination.lkViewControllerFromFilter = lkViewController;
         
     }
-    if ([segue.identifier isEqualToString:@"BackCrop"]) {
-        countEditUsed=0;
-        countEffectUsed=0;
-//        beginUIImage=imageView.image;
-        NSLog(@"Back to crop");
-        ViewController *destination = segue.destinationViewController;
-        destination.lkBackImage = lkViewController.imageView.image;
-        destination.lkTabBar = lkViewController.tabBarController;
-        
-    }
+//    if ([segue.identifier isEqualToString:@"BackCrop"]) {
+//        
+//        UIAlertView *av = [[UIAlertView alloc] initWithTitle:@"Message" message:@"Did u really want to back crop view controller" delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"OK", nil];
+//        [av show];
+//        countEditUsed=0;
+//        countEffectUsed=0;
+////        beginUIImage=imageView.image;
+//        NSLog(@"Back to crop");
+//        ViewController *destination = segue.destinationViewController;
+//        destination.lkBackImage = lkViewController.imageView.image;
+//        destination.lkTabBar = lkViewController.tabBarController;
+//        
+//    }
 }
 
+- (IBAction)backCropViewController:(id)sender {
+         UIAlertView *av = [[UIAlertView alloc] initWithTitle:@"Message" message:@"Did u really want to back crop view controller" delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"OK", nil];
+          [av show];
+//    ViewController *controller = [self.storyboard instantiateViewControllerWithIdentifier:@"cropViewController"];
+//    [self.navigationController pushViewController:controller animated:YES];
+//   [self presentViewController:controller animated:YES completion:nil];
+//    controller.lkBackImage = lkViewController.imageView.image;
+//    controller.lkTabBar = lkViewController.tabBarController;
+//    ViewController *destination = segue.destinationViewController;
+//    UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"Main.storyboard"
+//                                                             bundle: nil];
+//    ViewController *controller = (ViewController*)[mainStoryboard
+//                                                             instantiateViewControllerWithIdentifier: @"ViewController"];
+//    [self presentViewController:controller animated:YES completion:nil];
+  
+}
 
 //--------------------------------
 //@author dvduongth
@@ -545,4 +568,19 @@ ImageProcessingCore *imageEditProcessing ;
 
 //---------
 
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if(buttonIndex==1){
+        NSLog(@"vào dc 1 của alertview");
+            ViewController *controller = [self.storyboard instantiateViewControllerWithIdentifier:@"cropViewController"];
+           [self.navigationController pushViewController:controller animated:YES];
+           [self presentViewController:controller animated:YES completion:nil];
+            controller.lkBackImage = lkViewController.imageView.image;
+            controller.lkTabBar = lkViewController.tabBarController;
+            countEditUsed=0;
+            countEffectUsed=0;
+    }
+
+}
 @end

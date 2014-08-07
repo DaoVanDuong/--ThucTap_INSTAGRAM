@@ -9,9 +9,10 @@
 #import <UIKit/UIKit.h>
 #import <Social/Social.h>
 #import "ViewController.h"
-@interface testViewController : UIViewController<UINavigationBarDelegate,UITextFieldDelegate,UIActionSheetDelegate,UIAlertViewDelegate>
+@interface testViewController : UIViewController<UINavigationControllerDelegate,UITextFieldDelegate,UIActionSheetDelegate,UIAlertViewDelegate>
 
   
+
 
 @property (weak, nonatomic) IBOutlet UIImageView *imageView;
 @property (weak, nonatomic) IBOutlet UISlider *imageSlider;
@@ -30,5 +31,6 @@
 @property (strong, nonatomic) UIImage * lkImageShare;
 
 - (IBAction)changeSliderValue:(id)sender;
+- (IBAction)backCropViewController:(id)sender;
 
 @end

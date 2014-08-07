@@ -34,7 +34,7 @@ NSArray *editFilterName ;NSArray *filterValue;
                     [NSNumber numberWithFloat:1.0],
                     [NSNumber numberWithFloat:0.0],
                     [NSNumber numberWithFloat:1.0],
-                    [NSNumber numberWithFloat:0.0],
+                    [NSNumber numberWithFloat:2.0],
                     [NSNumber numberWithInt:0]];
     allEditFilter = [NSMutableDictionary dictionaryWithObjects:filterValue forKeys:editFilterName];
 
@@ -179,7 +179,7 @@ NSArray *editFilterName ;NSArray *filterValue;
             
         case 7:
             
-            [allEditFilter setObject: [NSNumber numberWithFloat:intensity] forKey:@"Vignette"];
+            [allEditFilter setObject: [NSNumber numberWithFloat:-intensity] forKey:@"Vignette"];
 //            NSLog(@"%@",allEditFilter);
             lighten.brightness=[[allEditFilter objectForKey:@"Brightness"] floatValue];
             sharpen.sharpness=[[allEditFilter objectForKey:@"Sharpeness"] floatValue];
